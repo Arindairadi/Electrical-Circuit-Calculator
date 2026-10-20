@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A browser-based electrical circuit calculator for Ohm's law, electrical power, and resistor networks.">
+  <title>ElectraCalc — Electrical Circuit Calculator</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <a class="brand" href="#"><span class="brand-mark">ϟ</span><span><strong>ElectraCalc</strong><small>Electrical Toolkit</small></span></a>
+    <p class="nav-label">CALCULATORS</p>
+    <nav class="nav-list" aria-label="Calculator navigation">
+      <button class="nav-item active" data-view="ohms"><span>Ω</span> Ohm's Law</button>
+      <button class="nav-item" data-view="power"><span>ϟ</span> Electrical Power</button>
+      <button class="nav-item" data-view="series"><span>≋</span> Series Circuit</button>
+      <button class="nav-item" data-view="parallel"><span>⋈</span> Parallel Circuit</button>
+      <button class="nav-item" data-view="history"><span>↻</span> History</button>
+    </nav>
+    <div class="sidebar-bottom"><div class="mini-status"><span class="status-dot"></span> Calculator ready</div><p>Built for learning electrical fundamentals.</p></div>
+  </aside>
+  <main class="main-content">
+    <header class="topbar"><div><p class="eyebrow">ELECTRICAL ENGINEERING TOOLKIT</p><h1 id="page-title">Ohm's Law Calculator</h1><p class="subtitle" id="page-subtitle">Calculate voltage, current, or resistance from two known values.</p></div><div class="topbar-chip"><span class="status-dot"></span> Works offline</div></header>
+
+    <section class="view active" id="view-ohms"><div class="content-grid">
+      <article class="panel calculator-panel"><div class="panel-heading"><div><span class="section-kicker">CALCULATOR 01</span><h2>Ohm's Law</h2></div><span class="formula-pill">V = I × R</span></div>
+        <p class="helper-text">Choose what you want to calculate, then enter the other two values.</p>
+        <label class="field-label" for="ohms-target">Calculate</label><select id="ohms-target" class="control"><option value="voltage">Voltage (V)</option><option value="current">Current (I)</option><option value="resistance">Resistance (R)</option></select>
+        <div class="field-grid">
+          <div class="field" id="ohms-voltage-wrap"><label class="field-label" for="ohms-voltage">Voltage <span>(V)</span></label><input class="control" id="ohms-voltage" type="number" min="0" step="any" placeholder="e.g. 12"></div>
+          <div class="field" id="ohms-current-wrap"><label class="field-label" for="ohms-current">Current <span>(A)</span></label><input class="control" id="ohms-current" type="number" min="0" step="any" placeholder="e.g. 2"></div>
+          <div class="field" id="ohms-resistance-wrap"><label class="field-label" for="ohms-resistance">Resistance <span>(Ω)</span></label><input class="control" id="ohms-resistance" type="number" min="0" step="any" placeholder="e.g. 6"></div>
+        </div><div class="button-row"><button class="btn btn-primary" id="calculate-ohms">Calculate result <span>→</span></button><button class="btn btn-secondary" id="reset-ohms">Reset</button></div><div class="result-box hidden" id="ohms-result" aria-live="polite"></div>
+      </article>
+      <aside class="panel concept-panel"><div class="concept-icon">Ω</div><span class="section-kicker">THE FORMULA</span><h2>Understand the relationship</h2><p>Ohm's law describes the relationship between voltage, current, and resistance in an electrical circuit.</p><div class="formula-list"><div><span>Voltage</span><strong>V = I × R</strong></div><div><span>Current</span><strong>I = V ÷ R</strong></div><div><span>Resistance</span><strong>R = V ÷ I</strong></div></div><div class="note"><strong>Remember</strong><p>Use consistent units: volts (V), amperes (A), and ohms (Ω).</p></div></aside>
+    </div></section>
+
+    <section class="view" id="view-power"><div class="content-grid">
+      <article class="panel calculator-panel"><div class="panel-heading"><div><span class="section-kicker">CALCULATOR 02</span><h2>Electrical Power</h2></div><span class="formula-pill">P = V × I</span></div><p class="helper-text">Select the value to calculate and enter the two values you know.</p>
+        <label class="field-label" for="power-target">Calculate</label><select id="power-target" class="control"><option value="power">Power (W)</option><option value="voltage">Voltage (V)</option><option value="current">Current (A)</option><option value="resistance">Resistance (Ω)</option></select>
+        <div class="field-grid">
+          <div class="field" id="power-voltage-wrap"><label class="field-label" for="power-voltage">Voltage <span>(V)</span></label><input class="control" id="power-voltage" type="number" min="0" step="any" placeholder="e.g. 12"></div>
+          <div class="field" id="power-current-wrap"><label class="field-label" for="power-current">Current <span>(A)</span></label><input class="control" id="power-current" type="number" min="0" step="any" placeholder="e.g. 2"></div>
+          <div class="field" id="power-resistance-wrap"><label class="field-label" for="power-resistance">Resistance <span>(Ω)</span></label><input class="control" id="power-resistance" type="number" min="0" step="any" placeholder="e.g. 6"></div>
+          <div class="field" id="power-power-wrap"><label class="field-label" for="power-power">Power <span>(W)</span></label><input class="control" id="power-power" type="number" min="0" step="any" placeholder="e.g. 24"></div>
+        </div><div class="button-row"><button class="btn btn-primary" id="calculate-power">Calculate result <span>→</span></button><button class="btn btn-secondary" id="reset-power">Reset</button></div><div class="result-box hidden" id="power-result" aria-live="polite"></div>
+      </article>
+      <aside class="panel concept-panel"><div class="concept-icon">ϟ</div><span class="section-kicker">POWER EQUATIONS</span><h2>Electrical power</h2><p>Power describes the rate at which electrical energy is transferred or used.</p><div class="formula-list"><div><span>Power</span><strong>P = V × I</strong></div><div><span>Using current</span><strong>P = I² × R</strong></div><div><span>Using voltage</span><strong>P = V² ÷ R</strong></div></div><div class="note"><strong>Units</strong><p>Power is measured in watts (W). These basic equations assume compatible values for the same DC circuit operating point.</p></div></aside>
+    </div></section>
+
+    <section class="view" id="view-series"><div class="content-grid">
+      <article class="panel calculator-panel"><div class="panel-heading"><div><span class="section-kicker">CALCULATOR 03</span><h2>Series Resistance</h2></div><span class="formula-pill">Rₜ = R₁ + R₂ + …</span></div><p class="helper-text">Add the resistance of each resistor connected in series.</p><label class="field-label" for="series-values">Resistor values (Ω)</label><textarea class="control textarea" id="series-values" rows="4" placeholder="Enter values separated by commas&#10;e.g. 100, 220, 330"></textarea><p class="field-hint">Enter at least two non-negative values, separated by commas or spaces.</p><div class="button-row"><button class="btn btn-primary" id="calculate-series">Calculate total <span>→</span></button><button class="btn btn-secondary" id="reset-series">Reset</button></div><div class="result-box hidden" id="series-result" aria-live="polite"></div></article>
+      <aside class="panel concept-panel"><div class="concept-icon">≋</div><span class="section-kicker">SERIES CIRCUIT</span><h2>One path for current</h2><p>In a series circuit, resistors are connected end-to-end. Equivalent resistance is the sum of their resistances.</p><div class="circuit-visual series-visual"><span>R₁</span><i></i><span>R₂</span><i></i><span>R₃</span></div><div class="note"><strong>Example</strong><p>100 Ω + 220 Ω + 330 Ω = 650 Ω total resistance.</p></div></aside>
+    </div></section>
+
+    <section class="view" id="view-parallel"><div class="content-grid">
+      <article class="panel calculator-panel"><div class="panel-heading"><div><span class="section-kicker">CALCULATOR 04</span><h2>Parallel Resistance</h2></div><span class="formula-pill">1/Rₜ = Σ(1/R)</span></div><p class="helper-text">Calculate equivalent resistance for resistors connected in parallel.</p><label class="field-label" for="parallel-values">Resistor values (Ω)</label><textarea class="control textarea" id="parallel-values" rows="4" placeholder="Enter values separated by commas&#10;e.g. 100, 220, 330"></textarea><p class="field-hint">Enter at least two positive values. A zero-ohm branch is treated as an ideal short circuit.</p><div class="button-row"><button class="btn btn-primary" id="calculate-parallel">Calculate equivalent <span>→</span></button><button class="btn btn-secondary" id="reset-parallel">Reset</button></div><div class="result-box hidden" id="parallel-result" aria-live="polite"></div></article>
+      <aside class="panel concept-panel"><div class="concept-icon">⋈</div><span class="section-kicker">PARALLEL CIRCUIT</span><h2>Multiple current paths</h2><p>In a parallel circuit, each resistor shares the same voltage. Equivalent resistance is lower than the smallest positive branch resistance.</p><div class="circuit-visual parallel-visual"><span>R₁</span><span>R₂</span><span>R₃</span></div><div class="note"><strong>Formula</strong><p>Rₜ = 1 ÷ (1/R₁ + 1/R₂ + … + 1/Rₙ)</p></div></aside>
+    </div></section>
+
+    <section class="view" id="view-history"><article class="panel history-panel"><div class="panel-heading"><div><span class="section-kicker">YOUR WORK</span><h2>Calculation History</h2></div><button class="btn btn-secondary" id="clear-history">Clear history</button></div><p class="helper-text">Recent calculations are saved in this browser on this device.</p><div id="history-list" class="history-list"></div></article></section>
+    <footer class="footer"><span>ElectraCalc · Educational tool</span><span>Verify calculations before real-world electrical work.</span></footer>
+  </main>
+</div><script src="script.js"></script>
+</body></html>
